@@ -1,0 +1,7 @@
+@mixin color-shadow($color) {
+  box-shadow: 0rem 0.3rem 0.6rem #{$color}40;
+}
+
+@mixin color-shadow-hover($color) {
+  box-shadow: 0rem 0.4rem 0.6rem #{$color}40;
+}
