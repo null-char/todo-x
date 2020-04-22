@@ -16,23 +16,23 @@
  * reflect-metadata must be imported first before vue-property-decorator
  * This allows us to set the type property of a prop from its type definition
  */
-import 'reflect-metadata';
-import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
-import { getModule } from 'vuex-module-decorators';
-import TodoModule from '@/store/modules/TodoModule';
-import CheckBox from '@/components/shared/CheckBox.vue';
-import Todo from '@/types/Todo';
+import "reflect-metadata";
+import { Component, Vue, Prop, Watch } from "vue-property-decorator";
+import { getModule } from "vuex-module-decorators";
+import TodoModule from "@/store/modules/TodoModule";
+import CheckBox from "@/components/shared/CheckBox.vue";
+import Todo from "@/types/Todo";
 
 const todoMod = getModule(TodoModule);
 
 @Component({
   components: {
-    CheckBox,
-  },
+    CheckBox
+  }
 })
 export default class TodoItem extends Vue {
   @Prop({ required: true }) public readonly todo!: Todo;
-  public isCompleted = false;
+  public isCompleted = this.todo.isCompleted;
 
   public deleteTodo() {
     todoMod.removeTodo(this.todo.id);
