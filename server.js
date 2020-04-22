@@ -4,7 +4,7 @@ const path = require('path')
 const history = require('connect-history-api-fallback')
 
 const app = express()
-const staticFileMiddleware = express.static(path.join(__dirname))
+const staticFileMiddleware = express.static(path.join(__dirname + '/dist'))
 
 app.use(staticFileMiddleware)
 app.use(history())
