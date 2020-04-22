@@ -1,13 +1,9 @@
 <template>
-  <input
-    class="styled-input"
-    :value="value"
-    @input.stop="$emit('input', $event.target.value)"
-  />
+  <input class="styled-input" :value="value" @input.stop="$emit('input', $event.target.value)" />
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue, Prop } from "vue-property-decorator";
 
 @Component
 export default class StyledInput extends Vue {
@@ -16,14 +12,14 @@ export default class StyledInput extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import '../../utils/colors';
-@import '../../utils/mixins';
+@import "../../utils/colors";
+@import "../../utils/mixins";
 
 .styled-input {
   outline: none;
-  border: 2px solid $primary;
+  border: 2px solid $secondary;
   transition: border-width 0.2s ease-in-out;
-  @include color-shadow($primary);
+  @include color-shadow($secondary);
   background-color: transparent;
   padding: 1rem 1.2rem;
   border-radius: 1rem;

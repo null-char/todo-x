@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { Component, Vue, Prop } from "vue-property-decorator";
 
 @Component
 export default class StyledButton extends Vue {
@@ -13,15 +13,15 @@ export default class StyledButton extends Vue {
 
   public get classes() {
     return {
-      secondary: this.secondary,
+      secondary: this.secondary
     };
   }
 }
 </script>
 
 <style lang="scss" scoped>
-@import '../../utils/colors';
-@import '../../utils/mixins';
+@import "../../utils/colors";
+@import "../../utils/mixins";
 
 // all the styles that are changed according to class
 @mixin button-styles($color) {
@@ -51,7 +51,7 @@ export default class StyledButton extends Vue {
 }
 
 .styled-button {
-  @include button-styles($primary);
+  @include button-styles($secondary);
   outline: none;
   border-radius: 0.3rem;
   cursor: pointer;
@@ -61,7 +61,7 @@ export default class StyledButton extends Vue {
   justify-content: center;
   transition: all 0.2s ease-in-out;
   background-color: transparent;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
   width: 100%;
   font-size: 2rem;
@@ -75,7 +75,7 @@ export default class StyledButton extends Vue {
   }
 
   &.secondary {
-    @include button-styles($secondary);
+    @include button-styles($primary);
   }
 }
 </style>
