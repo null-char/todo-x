@@ -40,7 +40,7 @@ export default class TodoItem extends Vue {
 
   public get taskTextClasses() {
     return {
-      completed: this.isCompleted,
+      completed: this.isCompleted
     };
   }
 
@@ -48,7 +48,7 @@ export default class TodoItem extends Vue {
     this.isCompleted = !this.isCompleted;
   }
 
-  @Watch('isCompleted')
+  @Watch("isCompleted")
   private onCompleteStatusChange() {
     todoMod.setTodoIsComplete({ id: this.todo.id, value: this.isCompleted });
   }
@@ -56,38 +56,49 @@ export default class TodoItem extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import '../../utils/colors';
-@import '../../utils/mixins';
+@import "../../utils/colors";
+@import "../../utils/mixins";
+@import "../../utils/media";
 
 .todo-item {
   display: grid;
   grid-template-columns: 4fr 1fr;
   padding: 1.5rem 2rem;
-  border-bottom: 0.1rem solid #{$primary}40;
+  border-bottom: 0.1rem solid #{$secondary}40;
   background-color: transparent;
   width: 100%;
-  height: fit-content;
   column-gap: 1.5rem;
 
+  @include tablet {
+    grid-template-columns: 1fr 20fr;
+    column-gap: 2rem;
+
+    .actions {
+      grid-area: 1 / 1 / 1 / 2;
+      flex-direction: row-reverse;
+    }
+  }
+
   & > .text-wrapper {
-    height: 100%;
+    display: block;
     width: 100%;
 
     & > .task-text {
       display: block;
       white-space: normal;
       word-break: break-word;
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       position: relative;
       width: fit-content;
       transition: all 0.2s ease-in-out;
 
       &::before {
-        content: '';
-        margin-top: 1.15rem;
+        content: "";
         display: block;
         position: absolute;
-        height: 0.2rem;
+        top: 50%;
+        left: 0;
+        height: 0.1rem;
         transform: translateY(-50%) scaleX(0);
         background-color: $white;
         width: 100%;
@@ -108,18 +119,17 @@ export default class TodoItem extends Vue {
   .actions {
     display: flex;
     width: 100%;
-    height: 100%;
     align-items: center;
     justify-content: flex-end;
 
     .trash-icon {
       margin-left: 2rem;
-      color: $secondary;
-      font-size: 1.8rem;
+      color: $primary;
+      font-size: 1.5rem;
       opacity: 0.8;
       cursor: pointer;
       transition: transform 0.2s ease-in-out;
-      @include color-shadow($secondary);
+      @include color-shadow($primary);
 
       &:hover {
         animation: jiggleAnimation 0.2s 3 ease-in-out;
@@ -127,6 +137,12 @@ export default class TodoItem extends Vue {
 
       &:active {
         transform: scale(0.9);
+      }
+
+      @include tablet {
+        font-size: 1.8rem;
+        margin-left: 0rem;
+        margin-right: 2rem;
       }
 
       @keyframes jiggleAnimation {
