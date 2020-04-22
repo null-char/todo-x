@@ -2,21 +2,19 @@
   <div class="add-todo">
     <form class="todo-form" v-on:submit.prevent="onSubmit">
       <styled-input v-model="taskInput" placeholder="Enter task" />
-      <styled-button :secondary="true" :disabled="isBtnDisabled" type="submit"
-        >Add Todo</styled-button
-      >
+      <styled-button :secondary="true" :disabled="isBtnDisabled" type="submit">Add Todo</styled-button>
     </form>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import { getModule } from 'vuex-module-decorators';
-import { v4 as uuid } from 'uuid';
-import TodoModule from '@/store/modules/TodoModule';
-import StyledInput from '@/components/shared/StyledInput.vue';
-import StyledButton from '@/components/shared/StyledButton.vue';
-import { Todo } from '@/types/Todo';
+import { Component, Vue } from "vue-property-decorator";
+import { getModule } from "vuex-module-decorators";
+import { v4 as uuid } from "uuid";
+import TodoModule from "@/store/modules/TodoModule";
+import StyledInput from "@/components/shared/StyledInput.vue";
+import StyledButton from "@/components/shared/StyledButton.vue";
+import Todo from "@/types/Todo";
 
 // typesafe module accessor 👌
 const todoMod = getModule(TodoModule);
@@ -24,21 +22,21 @@ const todoMod = getModule(TodoModule);
 @Component({
   components: {
     StyledButton,
-    StyledInput,
-  },
+    StyledInput
+  }
 })
 export default class AddTodo extends Vue {
-  public taskInput = '';
+  public taskInput = "";
 
   public onSubmit() {
     if (this.taskInput) {
       const task = this.taskInput;
-      this.taskInput = '';
+      this.taskInput = "";
 
       const newTodo: Todo = {
         id: uuid(),
         task,
-        isCompleted: false,
+        isCompleted: false
       };
 
       todoMod.addTodo(newTodo);
@@ -52,7 +50,8 @@ export default class AddTodo extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import '../../utils/colors';
+@import "../../utils/colors";
+@import "../../utils/media";
 
 .add-todo {
   width: 100%;
@@ -60,6 +59,10 @@ export default class AddTodo extends Vue {
   border-top-left-radius: 0.8rem;
   border-top-right-radius: 0.8rem;
   background-color: $card-background;
+
+  @include tablet {
+    border-radius: 0;
+  }
 
   .todo-form {
     display: grid;
