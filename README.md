@@ -1,6 +1,4 @@
-# todo-x
-
-## A Todo App built with Vue + Vuex + TS.
+# TodoX — A Todo App built with Vue + Vuex + TS
 
 This is an exemplary app built with Vue. It was a real pain finding a viable typesafe solution for setting up a Vuex store but the [vuex-module-decorators](https://github.com/championswimmer/vuex-module-decorators) makes typesafe Vuex stores a breeze. I implore you to check it out.
 
